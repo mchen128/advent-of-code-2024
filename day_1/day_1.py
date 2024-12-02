@@ -1,5 +1,5 @@
 # Part 1
-file = open('advent_of_code/day_1_input.txt', 'r')
+file = open('day_1/day_1_input.txt', 'r')
 lists = [[],[]]
 for line in file:
     line = line.strip().split('   ')
@@ -15,4 +15,13 @@ for index in range(len(lists[0])):
     print()
     sum_distance = sum_distance + distance
 
-print(sum_distance)
+#  Solution to part 1
+print(f'Day 1, part 1 solution: {sum_distance}')
+
+# Part 2
+similarity_score = 0
+for number in lists[0]:
+    frequency = lists[1].count(number)
+    similarity_score = similarity_score + number*frequency
+
+print(f'Day 1, part 2 solution: {similarity_score}')
