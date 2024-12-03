@@ -15,11 +15,27 @@ for line in file:
 
 file.close()  
 
-mul_regex = 'mul\(\d+,\d+\)'  # Will look for specific mul commands in the text
-matches: list[str] = re.findall(mul_regex, all_text)
+MUL_REGEX = 'mul\(\d+,\d+\)'  # Will look for specific mul commands in the text
+matches: list[str] = re.findall(MUL_REGEX, all_text)
 
 sum = 0
 for expression in matches:
     sum = sum + evaluate_mul(expression)
 
-print(sum)
+print(f'Day 3, Part 1: {sum}')
+
+
+# Part 2
+split_text_by_do = all_text.split('do()')
+
+sum = 0
+for list_item in split_text_by_do:
+    if "don't()" in list_item:
+        split_item = list_item.split("don't()")
+        item_matches = re.findall(MUL_REGEX, split_item[0])
+        
+    else:
+        item_matches = re.findall(MUL_REGEX, list_item)
+    for expression in item_matches:
+        sum = sum + evaluate_mul(expression)
+print(f'Day 3, Part 2: {sum}')
